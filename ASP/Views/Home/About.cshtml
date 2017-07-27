@@ -1,7 +1,17 @@
-﻿@{
+﻿@model IEnumerable<Domain.Core.Education.EducationProgram>
+
+
+@{
     ViewData["Title"] = "About";
 }
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
 <p>Use this area to provide additional information.</p>
+
+@{ 
+    foreach (var t in Model) { 
+        <p>@t.Title</p>
+    }
+
+}

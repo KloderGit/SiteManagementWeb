@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using DataBase.EntityFramework;
 
 namespace ASP.Controllers
 {
@@ -17,7 +18,11 @@ namespace ASP.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
-            return View();
+            var ttt = new EFDataManager( new ApplicationContext() );
+
+            var tr = ttt.EducationPrograms.GetAll().Where( p=> p.ProgramType.Contains("Курс")).Where( p => p.);
+
+            return View(tr);
         }
 
         public IActionResult Contact()
