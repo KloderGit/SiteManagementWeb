@@ -11,7 +11,7 @@
 
 @{ 
     foreach (var t in Model) { 
-        <p>@t.Title</p>
+        <p>@t.Title | @t.Category?.Title | @t.EducationType?.Title</p>
     }
 
 }
