@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<ASP.ViewModels.PageContactViewModel>
+
+@{
     ViewData["Title"] = "Contact";
 }
 <h2>@ViewData["Title"].</h2>
@@ -15,3 +17,36 @@
     <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
+
+
+<form method="post">
+    <label>Логин:</label><br />
+    <input type="text" name="login" /><br /><br />
+    <label>Пароль:</label><br />
+    <input type="text" name="password" /><br /><br />
+    <input type="submit" value="Отправить" />
+</form>
+
+
+<form method="post">
+    <div class="form-group">
+        <label for="exampleSelect1">Example select</label>
+        <select class="form-control" id="exampleSelect1" name="program">
+            @foreach (var program in Model)
+            {
+                <option value="@program.Program">@program.Program.Title | @program.Program.Guid</option>
+            }
+        </select>
+    </div>
+        <div class="form-group">
+        <label for="exampleSelect1">Example select</label>
+        <select class="form-control" id="exampleSelect1" name="subject">
+            @foreach (var program in Model)
+            {
+                <option value="@program.Subjects">@program.Subjects.Title | @program.Subjects.Guid</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

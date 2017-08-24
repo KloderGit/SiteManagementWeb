@@ -1,0 +1,18 @@
+@using ASP
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<Domain.Core.Education.Statement>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Все ведомости</h2>
+
+@foreach (var stat in Model ) { 
+    <p>@stat.Date.ToString()
+    
+    </p>
+}
