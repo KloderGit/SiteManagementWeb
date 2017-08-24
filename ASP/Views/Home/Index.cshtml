@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<string>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -105,4 +107,15 @@
             <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
         </ul>
     </div>
+
+
+    @foreach ( var t in Model) { 
+
+        <p>@t</p>
+    }
+      ЛОРАлыорва ыловра длфорвола дфвра др
+
+
+
+
 </div>

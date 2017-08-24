@@ -12,7 +12,12 @@ namespace ASP.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var ttt = new EFDataManager(new ApplicationContext());
+
+            var tr = ttt.Statements.GetAll().Select( s=> s.Date.ToString() );
+
+
+            return View(tr);
         }
 
         public IActionResult About()
@@ -25,16 +30,19 @@ namespace ASP.Controllers
                                             .Where(p => p.ProgramType.Contains("Курс"))
                                             .Where(pr => pr.Active)
                                             .Where(c => c.CategoryId == 1)
-                .IncludeMultiple(s => s.EducationalPlanList);
+                .IncludeMultiple(s => s.EducationalPlanList, s => s.EducationType );
 
 
-           var r = ttt.EducationPrograms.GetAllIncludeRef(
-                        s => s.Category,
-                        s => s.EducationType);
+           var r = ttt.EducationPrograms.GetAllIncludeRef( s => s.Category, s => s.EducationType );
 
             var tt = ttt.Statements.GetAllIncludeRef( fdf => fdf.Certification );
 
-            return View(tr);
+            var uu = ttt.EducationPrograms.GetAll()
+                        .Where(p => p.ProgramType.Contains("Курс"))
+                        .IncludeMultiple(e => e.EducationalPlanList )
+                        .Where( p => p.EducationalPlanList.Count > 0);
+
+            return View(r);
         }
 
         [HttpGet]
